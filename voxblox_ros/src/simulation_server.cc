@@ -293,28 +293,28 @@ void SimulationServer::visualize() {
   // Create a pointcloud with distance = intensity.
   pcl::PointCloud<pcl::PointXYZI> pointcloud;
   pointcloud.header.frame_id = world_frame_;
-  createDistancePointcloudFromTsdfLayerSlice(
-      *tsdf_gt_, 2, visualization_slice_level_, &pointcloud);
-  // createDistancePointcloudFromTsdfLayer(*tsdf_gt_, &pointcloud);
+  // createDistancePointcloudFromTsdfLayerSlice(
+  //     *tsdf_gt_, 2, visualization_slice_level_, &pointcloud);
+  createDistancePointcloudFromTsdfLayer(*tsdf_gt_, &pointcloud);
   tsdf_gt_pub_.publish(pointcloud);
 
   pointcloud.clear();
-  createDistancePointcloudFromEsdfLayerSlice(
-      *esdf_gt_, 2, visualization_slice_level_, &pointcloud);
-  // createDistancePointcloudFromEsdfLayer(*esdf_gt_, &pointcloud);
+  // createDistancePointcloudFromEsdfLayerSlice(
+  //     *esdf_gt_, 2, visualization_slice_level_, &pointcloud);
+  createDistancePointcloudFromEsdfLayer(*esdf_gt_, &pointcloud);
   esdf_gt_pub_.publish(pointcloud);
 
   pointcloud.clear();
-  createDistancePointcloudFromTsdfLayerSlice(
-      *tsdf_test_, 2, visualization_slice_level_, &pointcloud);
+  // createDistancePointcloudFromTsdfLayerSlice(
+  //     *tsdf_test_, 2, visualization_slice_level_, &pointcloud);
 
-  // createDistancePointcloudFromTsdfLayer(*tsdf_test_, &pointcloud);
+  createDistancePointcloudFromTsdfLayer(*tsdf_test_, &pointcloud);
   tsdf_test_pub_.publish(pointcloud);
 
   pointcloud.clear();
-  createDistancePointcloudFromEsdfLayerSlice(
-      *esdf_test_, 2, visualization_slice_level_, &pointcloud);
-  // createDistancePointcloudFromEsdfLayer(*esdf_test_, &pointcloud);
+  // createDistancePointcloudFromEsdfLayerSlice(
+  //     *esdf_test_, 2, visualization_slice_level_, &pointcloud);
+  createDistancePointcloudFromEsdfLayer(*esdf_test_, &pointcloud);
   esdf_test_pub_.publish(pointcloud);
 
   if (generate_mesh_) {
